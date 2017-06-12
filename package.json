@@ -1,0 +1,27 @@
+{
+  "name": "results-example",
+  "version": "1.0.0",
+  "description": "Typeform Results API demo application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/typeform/results-example.git"
+  },
+  "author": "Typeform S.L.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/typeform/results-example/issues"
+  },
+  "homepage": "https://github.com/typeform/results-example#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-session": "^1.15.3",
+    "minimist": "^1.2.0",
+    "node-fetch": "^1.7.1",
+    "passport": "^0.3.2",
+    "passport-oauth2": "^1.4.0"
+  }
+}
