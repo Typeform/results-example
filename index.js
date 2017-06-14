@@ -16,8 +16,8 @@ const TYPEFORM_API_URL = argv.typeform_api_url || die("Missing 'typeform_api_url
 const CLIENT_ID = argv.client_id || die("Missing 'client_id' argument.");
 const CLIENT_SECRET = argv.client_secret || die("Missing 'client_secret' argument.");
 
-const MY_HOST = 'localhost';
-const MY_PORT = 3000;
+const MY_HOST = '0.0.0.0';
+const MY_PORT = process.env.PORT || 3000;
 const MY_ADDR = `${MY_HOST}:${MY_PORT}`
 const CALLBACK_URL = `http://${MY_ADDR}/callback`;
 
