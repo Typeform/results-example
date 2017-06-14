@@ -12,6 +12,7 @@ function die(msg, code) {
 const argv = require('minimist')(process.argv.slice(2));
 const AUTHORIZATION_URL = argv.authorization_url || die("Missing 'authorization_url' argument.");
 const TOKEN_URL = argv.token_url || die("Missing 'token_url' argument.");
+const TYPEFORM_API_URL = argv.typeform_api_url || die("Missing 'typeform_api_url' argument.");
 const CLIENT_ID = argv.client_id || die("Missing 'client_id' argument.");
 const CLIENT_SECRET = argv.client_secret || die("Missing 'client_secret' argument.");
 
@@ -35,7 +36,8 @@ const session = require('express-session')({
 const passport = require('passport');
 const OAuth2Strategy = require('passport-oauth2');
 
-
+console.log(AUTHORIZATION_URL);
+console.log(TOKEN_URL);
 // setup passport
 passport.use(new OAuth2Strategy({
         authorizationURL: AUTHORIZATION_URL,
@@ -44,7 +46,10 @@ passport.use(new OAuth2Strategy({
         clientSecret: CLIENT_SECRET,
         callbackURL: CALLBACK_URL,
     },
-    (accessToken, refreshToken, profile, cb) => cb(null, {"access_token": accessToken})
+    (accessToken, refreshToken, profile, cb) => {
+        console.log(accessToken, refreshToken, profile);
+        cb(null, {"access_token": accessToken});
+    }
 ));
 
 passport.serializeUser((user, done) => done(null, user));
@@ -53,7 +58,7 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // initialize app
 const app = express();
-const handlers = require('./handlers');
+const handlers = new (require('./handlers'))(TYPEFORM_API_URL);
 
 app.use(session);
 app.use(passport.initialize());

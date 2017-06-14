@@ -1,7 +1,11 @@
 const fetch = require('node-fetch');
 
-module.exports = {
-    indexHandler: function(req, res) {
+class Handlers {
+    constructor (typeform_api_url) {
+        this.TYPEFORM_API_URL = typeform_api_url;
+    }
+
+    indexHandler(req, res) {
         if (!req.isAuthenticated()) {
             return res.end(`
             <body>
@@ -19,10 +23,10 @@ module.exports = {
             <p>Maybe you want to <a href="/logout">log out</a>?</p>
         </body>
         `);
-    },
+    }
 
-    displayResultsHandler: function(req, res) {
-        fetch(`https://api.typeform.com/forms/${req.params.id}/responses`, {
+    displayResultsHandler(req, res) {
+        fetch(`${this.TYPEFORM_API_URL}/forms/${req.params.id}/responses`, {
             headers: {
                 Authorization: `Bearer ${req.user.access_token}`,
             }
@@ -76,7 +80,10 @@ module.exports = {
             `)
         })
         .catch(e => {
-            res.end(e);
+            console.log(e);
+            return res.end(e.toString());
         })
     }
 }
+
+module.exports = Handlers;

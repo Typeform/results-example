@@ -4,6 +4,7 @@
   "description": "Typeform Results API demo application",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js --authorization_url $AUTHORIZATION_URL --token_url $TOKEN_URL --typeform_api_url $TYPEFORM_API_URL --client_id $CLIENT_ID --client_secret $CLIENT_SECRET",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
