@@ -9,13 +9,14 @@ function die(msg, code) {
 }
 
 // input
-const argv = require('minimist')(process.argv.slice(2));
-const AUTHORIZATION_URL = argv.authorization_url || die("Missing 'authorization_url' argument.");
-const TOKEN_URL = argv.token_url || die("Missing 'token_url' argument.");
-const TYPEFORM_API_URL = argv.typeform_api_url || die("Missing 'typeform_api_url' argument.");
-const CLIENT_ID = argv.client_id || die("Missing 'client_id' argument.");
-const CLIENT_SECRET = argv.client_secret || die("Missing 'client_secret' argument.");
-const REDIRECT_URI_BASE = argv.redirect_uri_base || die("Missing 'redirect_uri_base' argument.");
+const AUTHORIZATION_URL = process.env.AUTHORIZATION_URL || die("Missing 'AUTHORIZATION_URL' environment variable.");
+const TOKEN_URL = process.env.TOKEN_URL || die("Missing 'TOKEN_URL' environment variable.");
+const TYPEFORM_API_URL = process.env.TYPEFORM_API_URL || die("Missing 'TYPEFORM_API_URL' environment variable.");
+const CLIENT_ID = process.env.CLIENT_ID || die("Missing 'CLIENT_ID' environment variable.");
+const CLIENT_SECRET = process.env.CLIENT_SECRET || die("Missing 'CLIENT_SECRET' environment variable.");
+const REDIRECT_URI_BASE = process.env.REDIRECT_URI_BASE || die("Missing 'REDIRECT_URI_BASE' environment variable.");
+const DEFAULT_FORM_ID = process.env.DEFAULT_FORM_ID;
+
 
 const MY_HOST = '0.0.0.0';
 const MY_PORT = process.env.PORT || 3000;
@@ -58,7 +59,7 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // initialize app
 const app = express();
-const handlers = new (require('./handlers'))(TYPEFORM_API_URL);
+const handlers = new (require('./handlers'))(TYPEFORM_API_URL, DEFAULT_FORM_ID);
 
 app.use(session);
 app.use(passport.initialize());

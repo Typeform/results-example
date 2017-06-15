@@ -1,8 +1,9 @@
 const fetch = require('node-fetch');
 
 class Handlers {
-    constructor (typeform_api_url) {
+    constructor (typeform_api_url, default_form_id) {
         this.TYPEFORM_API_URL = typeform_api_url;
+        this.DEFAULT_FORM_ID = default_form_id;
 
         this.indexHandler = this.indexHandler.bind(this);
         this.displayResultsHandler = this.displayResultsHandler.bind(this);
@@ -16,6 +17,10 @@ class Handlers {
                 <p>You're not authenticated, you need to <a href="/login">authenticate via Typeform</a>.
             </body>
             `)
+        }
+
+        if (this.DEFAULT_FORM_ID) {
+            return res.redirect(`/results/${this.DEFAULT_FORM_ID}`);
         }
 
         let data = JSON.stringify(req.user);
