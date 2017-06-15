@@ -3,6 +3,9 @@ const fetch = require('node-fetch');
 class Handlers {
     constructor (typeform_api_url) {
         this.TYPEFORM_API_URL = typeform_api_url;
+
+        this.indexHandler = this.indexHandler.bind(this);
+        this.displayResultsHandler = this.displayResultsHandler.bind(this);
     }
 
     indexHandler(req, res) {
