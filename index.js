@@ -15,11 +15,11 @@ const TOKEN_URL = argv.token_url || die("Missing 'token_url' argument.");
 const TYPEFORM_API_URL = argv.typeform_api_url || die("Missing 'typeform_api_url' argument.");
 const CLIENT_ID = argv.client_id || die("Missing 'client_id' argument.");
 const CLIENT_SECRET = argv.client_secret || die("Missing 'client_secret' argument.");
+const REDIRECT_URI_BASE = argv.redirect_uri_base || die("Missing 'redirect_uri_base' argument.");
 
 const MY_HOST = '0.0.0.0';
 const MY_PORT = process.env.PORT || 3000;
 const MY_ADDR = `${MY_HOST}:${MY_PORT}`
-const CALLBACK_URL = `http://${MY_ADDR}/callback`;
 
 
 // import express
@@ -44,7 +44,7 @@ passport.use(new OAuth2Strategy({
         tokenURL: TOKEN_URL,
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: CALLBACK_URL,
+        callbackURL: REDIRECT_URI_BASE + "/callback",
     },
     (accessToken, refreshToken, profile, cb) => {
         console.log(accessToken, refreshToken, profile);
