@@ -46,6 +46,7 @@ passport.use(new OAuth2Strategy({
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         callbackURL: REDIRECT_URI_BASE + "/callback",
+        scope: ["offline", "profile:read", "results:read"],
     },
     (accessToken, refreshToken, profile, cb) => {
         console.log(accessToken, refreshToken, profile);
