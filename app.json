@@ -1,0 +1,26 @@
+{
+    "name": "results-example",
+    "env": {
+        "AUTHORIZATION_URL": {
+            "required": true,
+            "value": "http://api.joken.typeform.com/authorize"
+        },
+        "TOKEN_URL": {
+            "required": true,
+            "value": "http://api.joken.typeform.com/token"
+        },
+        "TYPEFORM_API_URL": {
+            "required": true,
+            "value": "http://api.joken.typeform.com"
+        },
+        "REDIRECT_URI_BASE": {
+            "required": true
+        },
+        "CLIENT_ID": {
+            "required": true
+        },
+        "CLIENT_SECRET": {
+            "required": true
+        }
+    }
+}
