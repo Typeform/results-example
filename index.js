@@ -11,9 +11,9 @@ function die(msg, code) {
 const url = require('url');
 
 // input
-const TYPEFORM_API_URL = process.env.TYPEFORM_API_URL || die("Missing 'TYPEFORM_API_URL' environment variable.");
-const AUTHORIZATION_URL = url.resolve(TYPEFORM_API_URL, '/oauth/authorize');
-const TOKEN_URL = url.resolve(TYPEFORM_API_URL, '/oauth/token');
+const TYPEFORM_API_BASE_URL = process.env.TYPEFORM_API_BASE_URL || die("Missing 'TYPEFORM_API_BASE_URL' environment variable.");
+const AUTHORIZATION_URL = url.resolve(TYPEFORM_API_BASE_URL, '/oauth/authorize');
+const TOKEN_URL = url.resolve(TYPEFORM_API_BASE_URL, '/oauth/token');
 
 const APPLICATION_URL = process.env.APPLICATION_URL || die("Missing 'APPLICATION_URL' environment variable.");
 
@@ -35,7 +35,6 @@ const session = require('express-session')({
     resave: true,
     saveUninitialized: true,
 })
-
 
 // import passport library
 const passport = require('passport');
@@ -66,7 +65,7 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // initialize app
 const app = express();
-const handlers = new(require('./handlers'))(TYPEFORM_API_URL, DEFAULT_FORM_ID);
+const handlers = new(require('./handlers'))(TYPEFORM_API_BASE_URL, DEFAULT_FORM_ID);
 
 app.use(session);
 app.use(passport.initialize());
