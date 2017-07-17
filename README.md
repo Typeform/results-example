@@ -61,3 +61,7 @@ And finally to run the application:
 $ npm start
 ```
 
+#### Manually deploying to Heroku
+
+Assuming that you have [the Heroku CLI toolbox installed](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up), you're all set to deploy the application to Heroku in the manual mode.
+Please follow [the instructions from Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app) in order to deploy your application.
