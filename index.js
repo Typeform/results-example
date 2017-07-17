@@ -8,13 +8,18 @@ function die(msg, code) {
     process.exit(code);
 }
 
+const url = require('url');
+
 // input
-const AUTHORIZATION_URL = process.env.AUTHORIZATION_URL || die("Missing 'AUTHORIZATION_URL' environment variable.");
-const TOKEN_URL = process.env.TOKEN_URL || die("Missing 'TOKEN_URL' environment variable.");
 const TYPEFORM_API_URL = process.env.TYPEFORM_API_URL || die("Missing 'TYPEFORM_API_URL' environment variable.");
+const AUTHORIZATION_URL = url.resolve(TYPEFORM_API_URL, '/oauth/authorize');
+const TOKEN_URL = url.resolve(TYPEFORM_API_URL, '/oauth/token');
+
+const APPLICATION_URL = process.env.APPLICATION_URL || die("Missing 'APPLICATION_URL' environment variable.");
+
 const CLIENT_ID = process.env.CLIENT_ID || die("Missing 'CLIENT_ID' environment variable.");
 const CLIENT_SECRET = process.env.CLIENT_SECRET || die("Missing 'CLIENT_SECRET' environment variable.");
-const REDIRECT_URI_BASE = process.env.REDIRECT_URI_BASE || die("Missing 'REDIRECT_URI_BASE' environment variable.");
+
 const DEFAULT_FORM_ID = process.env.DEFAULT_FORM_ID;
 
 
@@ -24,7 +29,6 @@ const MY_ADDR = `${MY_HOST}:${MY_PORT}`
 
 
 // import express
-const url = require('url');
 const express = require('express');
 const session = require('express-session')({
     secret: 'top_secret',
@@ -45,12 +49,14 @@ passport.use(new OAuth2Strategy({
         tokenURL: TOKEN_URL,
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: REDIRECT_URI_BASE + "/callback",
-        scope: ["offline", "profile:read", "results:read"],
+        callbackURL: APPLICATION_URL + "/callback",
+        scope: ["results:read"],
     },
     (accessToken, refreshToken, profile, cb) => {
         console.log(accessToken, refreshToken, profile);
-        cb(null, {"access_token": accessToken});
+        cb(null, {
+            "access_token": accessToken
+        });
     }
 ));
 
@@ -60,7 +66,7 @@ passport.deserializeUser((user, done) => done(null, user));
 
 // initialize app
 const app = express();
-const handlers = new (require('./handlers'))(TYPEFORM_API_URL, DEFAULT_FORM_ID);
+const handlers = new(require('./handlers'))(TYPEFORM_API_URL, DEFAULT_FORM_ID);
 
 app.use(session);
 app.use(passport.initialize());
@@ -71,7 +77,7 @@ const authenticator = passport.authenticate('oauth2', {
     successReturnToOrRedirect: '/'
 })
 
-const require_authentication = function(req, res, next) {
+const require_authentication = function (req, res, next) {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.url;
         return res.redirect('/login');

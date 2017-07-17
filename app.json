@@ -1,26 +1,22 @@
 {
     "name": "results-example",
     "env": {
-        "AUTHORIZATION_URL": {
-            "required": true,
-            "value": "http://api.joken.typeform.com/authorize"
-        },
-        "TOKEN_URL": {
-            "required": true,
-            "value": "http://api.joken.typeform.com/token"
-        },
         "TYPEFORM_API_URL": {
             "required": true,
-            "value": "http://api.joken.typeform.com"
+            "value": "http://api.challenge.typeform.com",
+            "description": "An entry point for the Typeform services (OAuth + API)"
         },
-        "REDIRECT_URI_BASE": {
-            "required": true
+        "APPLICATION_URL": {
+            "required": true,
+            "description": "Application URL which will be used to construct a callback URL for OAuth mechanism"
         },
         "CLIENT_ID": {
-            "required": true
+            "required": true,
+            "description": "The Client ID you've got from Typeform"
         },
         "CLIENT_SECRET": {
-            "required": true
+            "required": true,
+            "description": "The Client Secret you've got from Typeform"
         }
     }
 }
