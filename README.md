@@ -40,11 +40,8 @@ To run the application you would need to setup some environment variables. The e
 
 ```
 $ cat .env
-AUTHORIZATION_URL='http://api.challenge.typeform.com/authorize'
-TOKEN_URL='http://api.challenge.typeform.com/token'
-TYPEFORM_API_URL='http://api.challenge.typeform.com'
-
-REDIRECT_URI_BASE='http://localhost:5000'
+TYPEFORM_API_BASE_URL='https://api.joken.typeform.com'
+APPLICATION_URL='http://localhost:5000'
 
 CLIENT_ID='<your_client_id>'
 CLIENT_SECRET='<your_client_secret>'
