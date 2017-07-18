@@ -8,6 +8,7 @@
         },
         "APPLICATION_URL": {
             "required": true,
+            "value": "https://<your_app_name>.herokuapp.com",
             "description": "Application URL which will be used to construct a callback URL for OAuth mechanism"
         },
         "CLIENT_ID": {
