@@ -12,20 +12,18 @@ The application has two main enpoints:
 
 ## Getting started
 
-### Option 1 (using Heroku)
+### Deploy to Heroku
 
-Click the button below, and follow the instructions :)
+You can deploy your application to Heroku in one click using the button below and following the instructions.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/typeform/results-example/tree/master)
 
-If you need to deploy to Heroku manually, please follow the instructions below.
-
-### Option 2 (run locally)
+### Development
 
 #### Requirements
 
 - More or less recent versions of Node.js and NPM installed
-- [Heroku CLI client](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) (optional, if you plan to deploy your application to Heroku)
+- [Heroku CLI client](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up) (needed if you plan to work with Heroku)
 
 #### Installation
 To install the application and its dependencies:
@@ -37,7 +35,7 @@ $ cd results-example
 $ npm install
 ```
 
-#### Environment
+#### Running
 To run the application you would need to setup some environment variables. The easiest way is to create a `.env` file and then export it's contents before running the application:
 
 ```
@@ -54,14 +52,22 @@ CLIENT_SECRET='<your_client_secret>'
 $ export $(cat .env)
 ```
 
-#### Running
 And finally to run the application:
 
 ```
 $ npm start
 ```
 
-#### Manually deploying to Heroku
+#### [Re-]deploying to Heroku
 
-Assuming that you have [the Heroku CLI toolbox installed](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up), you're all set to deploy the application to Heroku in the manual mode.
-Please follow [the instructions from Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs#deploy-the-app) in order to deploy your application.
+In order to be able to deploy your changes to Heroku, you need to add a Heroku remote to your git repository:
+
+```
+$ heroku git:remote -a <your_heroku_application_name>
+```
+
+To deploy the changes to Heroku just push them to the `heroku` remote:
+
+```
+$ git push heroku master
+```
