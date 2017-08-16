@@ -68,3 +68,8 @@ To deploy the changes to Heroku just push them to the `heroku` remote:
 ```
 $ git push heroku master
 ```
+Legal
+
+Copyright 2017 Typeform SL. under the MIT License; see the LICENSE file for more information.
+
+This is not an official Typeform product.
