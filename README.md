@@ -40,7 +40,7 @@ To run the application you would need to setup some environment variables. The e
 
 ```
 $ cat .env
-TYPEFORM_API_BASE_URL=https://api.challenge.typeform.com
+TYPEFORM_API_BASE_URL=https://api.typeform.com
 APPLICATION_URL=http://localhost:5000
 
 CLIENT_ID=<your_client_id>

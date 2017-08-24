@@ -3,7 +3,7 @@
     "env": {
         "TYPEFORM_API_BASE_URL": {
             "required": true,
-            "value": "https://api.challenge.typeform.com",
+            "value": "https://api.typeform.com",
             "description": "An entry point for the Typeform services (OAuth + API)"
         },
         "APPLICATION_URL": {
