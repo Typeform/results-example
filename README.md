@@ -3,7 +3,7 @@
 This is an example application which utilizes the Typeform authentication mechanism,
 and also calls the responses API to plot the simple forms data.
 
-The application has two main enpoints:
+The application has two main endpoints:
 
 - `/` — an index page which provides an interface to log in and log out actions;
 - `/results/:id` — a page which plots the graph for the particular form identified by the `:id` parameter
