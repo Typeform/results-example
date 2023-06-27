@@ -16,7 +16,7 @@ The application has two main endpoints:
 
 You can deploy your application to Heroku in one click using the button below and following the instructions.
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/typeform/results-example/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/typeform/results-example/tree/main)
 
 ### Development
 
@@ -66,5 +66,5 @@ $ heroku git:remote -a <your_heroku_application_name>
 To deploy the changes to Heroku just push them to the `heroku` remote:
 
 ```
-$ git push heroku master
+$ git push heroku main
 ```
