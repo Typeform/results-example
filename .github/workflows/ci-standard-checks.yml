@@ -15,7 +15,8 @@ on:
 jobs:
   ci-standard-checks:
     runs-on:
-      - ubuntu-latest
+      - self-hosted
+      - automated-checks-ephemeral
     steps:
       - name: Check Out Source Code
         uses: actions/checkout@v2
@@ -25,5 +26,5 @@ jobs:
         uses: Typeform/ci-standard-checks@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          dockerUsername: ${{ secrets.GITLEAKS_DOCKER_USERNAME }}
-          dockerPassword: ${{ secrets.GITLEAKS_DOCKER_PASSWORD }}
+          dockerUsername: ${{ secrets.DOCKER_USERNAME }}
+          dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
