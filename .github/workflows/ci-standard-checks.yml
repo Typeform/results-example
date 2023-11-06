@@ -26,5 +26,3 @@ jobs:
         uses: Typeform/ci-standard-checks@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          dockerUsername: ${{ secrets.DOCKER_USERNAME }}
-          dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
